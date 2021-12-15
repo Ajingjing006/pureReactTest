@@ -7,6 +7,7 @@ import {
   getAddItemAction,
   getDeleteItemAction,
 } from "../store/actionCreator";
+
 class TodoList extends Component {
   constructor(props) {
     super(props);
@@ -39,21 +40,29 @@ class TodoList extends Component {
   render() {
     return (
       <colorContext.Consumer>
-        {(color) => (
-          <ageContext.Consumer>
-            {(age) => (
-              <TodoListUI
-                color={color}
-                age={age}
-                inputValue={this.state.inputValue}
-                data={this.state.data}
-                inputHandler={this.inputHandler}
-                handlerAdd={this.handlerAdd}
-                deleHandler={this.deleHandler}
-              />
-            )}
-          </ageContext.Consumer>
-        )}
+        {(...color) => {
+          console.log(colorContext._currentValue2, colorContext._currentValue);
+          console.log(ageContext._currentValue2, ageContext._currentValue);
+          console.log(1, color, this.context);
+          return (
+            <ageContext.Consumer>
+              {(...age) => {
+                console.log(2, age, this.context);
+                return (
+                  <TodoListUI
+                    color={color}
+                    age={age}
+                    inputValue={this.state.inputValue}
+                    data={this.state.data}
+                    inputHandler={this.inputHandler}
+                    handlerAdd={this.handlerAdd}
+                    deleHandler={this.deleHandler}
+                  />
+                );
+              }}
+            </ageContext.Consumer>
+          );
+        }}
       </colorContext.Consumer>
     );
   }

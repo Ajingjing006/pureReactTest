@@ -1,3 +1,6 @@
-export const data = {
-  name: "default name",
+const data = {};
+
+export const setData = (val) => {
+  data = val;
 };
+export const getData = () => data;
