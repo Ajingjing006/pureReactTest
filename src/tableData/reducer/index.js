@@ -34,9 +34,15 @@ const reducer = (prevState, { type, payload }) => {
       baseRow = Number(baseRow);
       baseColumn = Number(baseColumn);
 
+      const rL = _data.length;
       dataList.forEach((row, _r) => {
         row.forEach((cell, _c) => {
-          _data[baseRow + _r][baseColumn + _c] = cell;
+          if (
+            baseRow + _r < rL &&
+            baseColumn + _c < _data[baseRow + _r].length
+          ) {
+            _data[baseRow + _r][baseColumn + _c] = cell;
+          }
         });
       });
       return {

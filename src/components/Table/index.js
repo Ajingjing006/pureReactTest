@@ -125,11 +125,11 @@ const Table = (props) => {
 
   useEffect(() => {
     document.addEventListener("keydown", keyDownHandler);
-    document.addEventListener("click", documentClickForBlur);
+    document.addEventListener("click", documentClickForBlur, false);
     return () => {
       //清理页面的监听事件
       document.removeEventListener("keydown", keyDownHandler);
-      document.removeEventListener("click", documentClickForBlur);
+      document.removeEventListener("click", documentClickForBlur, false);
     };
   });
 
@@ -177,7 +177,10 @@ const Table = (props) => {
         </div>
         <Legend rows={rows} />
       </div>
-      <div style={{ position: "relative" }}>
+      <div
+        style={{ position: "relative" }}
+        onClick={(e) => e.stopPropagation()}
+      >
         <TableUi
           rows={rows}
           selectedCell={selectedCell}
