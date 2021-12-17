@@ -21,10 +21,9 @@ const createRandomColor = () => {
   )},${getRandomWithLimit(255)}, 0.2)`;
 };
 
-const colorMapping = new Map(); //存储颜色和值的映射表
-
+const colorMappingList = new Map(); //存储颜色和值的映射表
 //获取数值对应的颜色，如果不存在，就
-export const getColor = (val) => {
+export const getColor = (colorMapping, val) => {
   if (val.length === 0) return "none";
   let color = colorMapping.has(val)
     ? colorMapping.get(val)
@@ -34,6 +33,10 @@ export const getColor = (val) => {
 };
 
 //返回颜色关系表
-export const getColorMapping = () => {
-  return colorMapping;
+export const getColorMapping = (key = "default") => {
+  if (colorMappingList.has(key)) {
+    return colorMappingList.get(key);
+  }
+  colorMappingList.set(key, new Map());
+  return colorMappingList.get(key);
 };

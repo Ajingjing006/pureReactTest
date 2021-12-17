@@ -168,14 +168,14 @@ const Table = (props) => {
           style={{
             textAlign: "center",
             position: "absolute",
-            top: 0,
+            top: "0",
             left: 0,
             width: "100%",
           }}
         >
           图例
         </div>
-        <Legend rows={rows} />
+        <Legend rows={rows} colorPKey="table1" />
       </div>
       <div
         style={{ position: "relative" }}

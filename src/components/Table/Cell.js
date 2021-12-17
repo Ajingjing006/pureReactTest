@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getColor } from "../../utils";
+import { getColor, getColorMapping } from "../../utils";
 const Cell = (props) => {
   const { content, editing, selected, dataKey } = props;
   const {
@@ -11,12 +11,14 @@ const Cell = (props) => {
     clearEditeMode,
     changeCellContent,
   } = props;
-  const [bgColor, setBgColor] = useState(getColor(content));
+  const [bgColor, setBgColor] = useState(
+    getColor(getColorMapping("table1"), content)
+  );
   const [editStr, setEditStr] = useState(content);
   useEffect(() => {
     setEditStr(content);
     if (!editing) {
-      setBgColor(getColor(content));
+      setBgColor(getColor(getColorMapping("table1"), content));
     } else if (editStr !== content) {
       changeCellContent(dataKey, editStr);
     }
@@ -62,6 +64,11 @@ const Cell = (props) => {
             onBlur={(e) => {
               clearEditeMode();
               changeCellContent(dataKey, editStr);
+            }}
+            onKeyUp={(e) => {
+              if (e.key.toLowerCase() === "enter") {
+                e.target.blur();
+              }
             }}
             value={editStr}
           />

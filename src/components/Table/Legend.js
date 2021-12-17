@@ -4,7 +4,7 @@ import { getColorMapping } from "../../utils";
 const Legend = (props) => {
   const [_legendmapping, setLegendmapping] = useState([]);
   useEffect(() => {
-    const mapping = getColorMapping();
+    const mapping = getColorMapping(props.colorPKey);
     const _map = new Map();
     props.rows
       .flat(2)
