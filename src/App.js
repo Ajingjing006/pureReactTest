@@ -48,6 +48,19 @@ function App() {
           </ContextButton>
         </publicContext2.Provider>
       </publicContext.Provider>
+      <publicContext.Provider value={{ name: 111 }}>
+        <publicContext2.Provider value={{ name: 2222 }}>
+          <ContextButton
+            publicContext={publicContext}
+            publicContext2={publicContext2}
+            clickHandler={(val) => {
+              console.log(val);
+            }}
+          >
+            点击获取context2
+          </ContextButton>
+        </publicContext2.Provider>
+      </publicContext.Provider>
     </div>
   );
 }

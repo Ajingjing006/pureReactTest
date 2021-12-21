@@ -1,14 +1,4 @@
-export const isPlainObject = (obj) => {
-  if (typeof obj !== "object" || obj == null) {
-    return false;
-  }
-  let proto = obj;
-  while (Object.getPrototypeOf(proto) != null) {
-    proto = Object.getPrototypeOf(proto);
-  }
-  return Object.getPrototypeOf(obj) === proto;
-};
-
+import Fun, { isNill } from "./FunTool";
 //获取限额内的数字
 const getRandomWithLimit = (limit) => {
   return Math.round(Math.random() * limit);
@@ -40,3 +30,5 @@ export const getColorMapping = (key = "default") => {
   colorMappingList.set(key, new Map());
   return colorMappingList.get(key);
 };
+
+console.log(Fun, isNill);
