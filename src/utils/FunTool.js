@@ -9,6 +9,9 @@ export const isNull = (val) => val === null;
 //判断是null 或者 undefined
 export const isNill = (val) => val == null;
 
+//判断一个数字是不是偶数【这里必须是数字才行】
+export const isEven = (val) => typeof val === "number" && val % 2 === 0;
+
 export const isPlainObject = (obj) => {
   if (typeof obj !== "object" || obj == null) {
     return false;
