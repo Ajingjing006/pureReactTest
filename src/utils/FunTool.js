@@ -23,9 +23,21 @@ export const isPlainObject = (obj) => {
   return Object.getPrototypeOf(obj) === proto;
 };
 
+//防抖
+export const debounce = (fn, delay) => {
+  let timer = null;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn(args);
+    }, delay);
+  };
+};
+
 export default {
   negate,
   isNull,
   isNill,
   isPlainObject,
+  debounce,
 };

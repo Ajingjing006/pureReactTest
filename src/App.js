@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { store } from "./tableData/store";
 import {
   getDeleteCellAction,
@@ -9,7 +9,9 @@ import {
 import Table from "./components/Table";
 import ContextButton from "./components/ContextButton";
 import { publicContext, publicContext2 } from "./context";
-function App() {
+import { debounce } from "./utils/FunTool.js";
+const ABC = {};
+function App(props) {
   const [data, setData] = useState(store.getState());
   const pasteData = ([baseRow, baseColumn], dataList) => {
     store.dispatch(getPasteCellAction({ baseRow, baseColumn, dataList }));
@@ -26,6 +28,31 @@ function App() {
     setData(store.getState());
   };
   store.subscribe(storeRefresh); //监控store的更新
+
+  const fn2 = (...args) => {
+    console.log("fn2", ...args);
+  };
+
+  //测试防抖
+  //timer保存不住
+  // const clickHandler = useCallback(
+  //   (event, fn = debounce(fn2.bind({ a: 1, b: 2 }), 1000)) => {
+  //     fn(event);
+  //   },
+  //   []
+  // );
+
+  //可行，但是有警告
+  // const clickHandler = useCallback(debounce(fn2.bind({ a: 1, b: 2 }), 1000), [
+  //   props,
+  // ]);
+
+  const fn = useMemo(() => debounce(fn2.bind({ a: 1, b: 2 }), 1000), [props]);
+
+  const clickHandler = (e) => {
+    fn(e);
+  };
+
   return (
     <div>
       <Table
@@ -61,6 +88,8 @@ function App() {
           </ContextButton>
         </publicContext2.Provider>
       </publicContext.Provider>
+      <hr />
+      <button onClick={clickHandler}>点击测试防抖</button>
     </div>
   );
 }
