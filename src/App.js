@@ -50,7 +50,7 @@ function App(props) {
   const fn = useMemo(() => debounce(fn2.bind({ a: 1, b: 2 }), 1000), [props]);
 
   const clickHandler = (e) => {
-    fn(e);
+    fn(1, 99, 99, 88);
   };
 
   return (
