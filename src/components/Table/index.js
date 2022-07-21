@@ -17,12 +17,12 @@ const Table = (props) => {
   const [mapping, setMapping] = useState(new Map());
   // const
   const rows = props.rows;
-
+  <input type="checkbox" />;
   //单元格选中
   const cellClickHandler = (val) => {
     setSelectedCell(val);
   };
-
+  <input type="checkbox" />;
   //进行多单元格选中操作设计
   const multiSelectHandler = (key) => {
     if (selectMode) {
@@ -39,12 +39,12 @@ const Table = (props) => {
     setSelectMode(true);
     setSelectedCells([key]);
   };
-
+  <input type="checkbox" />;
   //鼠标抬起监控[用来停止选择模式]
   const mouseUpHandler = (key) => {
     setSelectMode(false);
   };
-
+  <input type="checkbox" />;
   //复制
   const copyData = () => {
     if (selectedCells.length) {
@@ -76,14 +76,14 @@ const Table = (props) => {
       setCopyCells(cells);
     }
   };
-
+  <input type="checkbox" />;
   //粘贴
   const pasteData = () => {
     if (selectedCell) {
       props.pasteData(selectedCell.split("x"), copyCells);
     }
   };
-
+  <input type="checkbox" />;
   //监控页面的键盘事件
   //键盘按下
   const keyDownHandler = (e) => {
@@ -105,11 +105,11 @@ const Table = (props) => {
       }
     }
   };
-
+  <input type="checkbox" />;
   const documentClickForBlur = (e) => {
     setSelectedCell(null);
   };
-
+  <input type="checkbox" />;
   //修改单元格内容
   const changeCellContent = (key, value) => {
     props.updateCellContent(key, value);
@@ -122,7 +122,7 @@ const Table = (props) => {
   const clearEditeMode = () => {
     setReClickedCell(null);
   };
-
+  <input type="checkbox" />;
   useEffect(() => {
     document.addEventListener("keydown", keyDownHandler);
     document.addEventListener("click", documentClickForBlur, false);
@@ -132,7 +132,7 @@ const Table = (props) => {
       document.removeEventListener("click", documentClickForBlur, false);
     };
   });
-
+  <input type="checkbox" />;
   //构建数据映射表，便于后期数据查找操作
   useEffect(() => {
     props.rows.forEach((cells, rowIndex) => {
@@ -145,7 +145,7 @@ const Table = (props) => {
       });
     });
   }, [props]);
-
+  <input type="checkbox" />;
   //根据选中的单元格的首位，获取mark的显示状态
   useEffect(() => {
     if (selectedCells.length === 2) {

@@ -12,7 +12,7 @@ export const countPostion = (key1, key2) => {
   let y = 0;
   let w = 0;
   let h = 0;
-
+  <input type="checkbox" />;
   if (dom1.x < dom2.x) {
     x = dom1.x;
     w = dom2.x + dom2.width - dom1.x;

@@ -33,7 +33,7 @@ const reducer = (prevState, { type, payload }) => {
       let { baseRow, baseColumn, dataList } = payload;
       baseRow = Number(baseRow);
       baseColumn = Number(baseColumn);
-
+      <input type="checkbox" />;
       const rL = _data.length;
       dataList.forEach((row, _r) => {
         row.forEach((cell, _c) => {

@@ -15,16 +15,14 @@ class TodoList extends Component {
     this.inputHandler = this.inputHandler.bind(this);
     this.handlerAdd = this.handlerAdd.bind(this);
     this.storeHandleChange = this.storeHandleChange.bind(this);
-    this.deleHandler = this.deleHandler.bind(this);
-
-    store.subscribe(this.storeHandleChange);
+    this.deleHandler = this.deleHandler.bind(this);<input type="checkbox" />
+   store.subscribe(this.storeHandleChange);
   }
   //删除一项
   deleHandler(index) {
     store.dispatch(getDeleteItemAction(index));
-  }
-
-  //更改输入框内容
+  }<input type="checkbox" />
+ //更改输入框内容
   inputHandler(e) {
     store.dispatch(getInputChangeAction(e.target.value));
   }

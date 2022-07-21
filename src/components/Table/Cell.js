@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { getColor, getColorMapping } from "../../utils";
+import { CellContext } from "../../context/index";
 const Cell = (props) => {
   const { content, editing, selected, dataKey } = props;
+  const ref1 = useRef(); //绑定dom
+  const PrivateComponent = useContext(CellContext);
   const {
     cellTurnToEditingMode,
     cellClickHandler,
@@ -30,7 +33,11 @@ const Cell = (props) => {
       style={{
         background: bgColor,
       }}
+      onPointerDown={(e) => {
+        console.log(2, e);
+      }}
       onClick={(e) => {
+        console.log(4, e);
         e.stopPropagation();
         if (selected) {
           //选中的情况下，重新点击，进入编辑模式
@@ -73,6 +80,8 @@ const Cell = (props) => {
             value={editStr}
           />
         </div>
+      ) : PrivateComponent ? (
+        <PrivateComponent value={content} refx={ref1} />
       ) : (
         content
       )}
